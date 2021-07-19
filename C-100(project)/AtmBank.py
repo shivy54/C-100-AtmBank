@@ -1,8 +1,8 @@
 class Atm:
-    def __init__(self, CardNo, pin):
+    def __init__(self, CardNo, pin, money):
         self.CardNo = CardNo
         self.pin = pin
-        self.money = 50000
+        self.money = money
 
     def BalanceEnquiry(self, user):
         print()
@@ -37,12 +37,12 @@ class Atm:
             print("Sorry! You do not have" + str(amount) + " Dollars")
             print("You have " + str(self.money) + " Dollars")
         else:
-            balance = int(self.money) - amount
+            self.money = int(self.money) - amount
             print("Withdrawing Money")
             print()
             print("Here are the " + str(amount) + " Dollars you have withdrawn")
             print("$$$$$$")
-            print("Your remaining balance is " + str(balance) + " Dollars")
+            print("Your remaining balance is " + str(self.money) + " Dollars")
         print()
         question = input("Do you want do do any other action?(Yes/no)-: ")
         
@@ -77,10 +77,10 @@ class Atm:
     def AddMoney(self,user):
         print()
         digit = int(input("Enter the amount you want to tranfer to your bank-: "))
-        digits = int("50000") + digit
+        self.money = self.money + digit
         print("Adding money")
         print()
-        print("Your bank account now has " + str(digits) + " dollars")
+        print("Your bank account now has " + str(self.money) + " dollars")
         print()
         question = input("Do you want do do any other action?(Yes/no)-: ")
 
@@ -117,7 +117,8 @@ def main():
         total = total + int(x)
     tot = total
     if((pi == 4) and (tot == 16)):
-        new_user = Atm(CardNo, Pin)
+        new_user = Atm(CardNo, Pin,50000)
+
         print("Choose your action")
         print("1:Balance Enquiry")
         print("2:Withdrawl")
